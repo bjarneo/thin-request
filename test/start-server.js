@@ -7,16 +7,18 @@ app.use(bodyParser.json());
 
 module.exports = function startServer(done) {
     app.get('/get/:id', (req, res) => {
-        res.json({
-            it: 'works',
-            id: req.params.id
+        res.format({
+            html: () =>  res.send(`<p>${req.params.id}</p>`),
+            json: () => res.send({
+                it: 'works',
+                id: req.params.id
+            })
         });
     });
 
     app.post('/post', (req, res) => {
         res.format({
-            text: () => res.send(req.body.whatever),
-            html: () =>  { console.log ('iiiiiiihihi'); res.send(`<p>${req.body.whatever}</p>`); },
+            text: () => res.send(req.body),
             json: () => res.send(req.body)
         });
     });
