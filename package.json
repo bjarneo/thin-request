@@ -1,6 +1,6 @@
 {
   "name": "thin-request",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Thin http(s) promise request",
   "keywords": [
     "kiss",
