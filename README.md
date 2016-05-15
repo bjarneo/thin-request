@@ -95,6 +95,7 @@ const opts = {
     createConnection: params.createConnection || null
 };
 ```
+[Read more about options](https://nodejs.org/api/http.html#http_http_request_options_callback)
 
 Tests
 ------
