@@ -1,7 +1,7 @@
 {
   "name": "thin-request",
   "version": "1.0.0",
-  "description": "Keep it short and simple promise request",
+  "description": "Thin http(s) promise request",
   "keywords": [
     "kiss",
     "thin",
@@ -21,7 +21,7 @@
   "scripts": {
     "prepublish": "npm test",
     "lint": "eslint .",
-    "test": "mocha test/**/*.test.js"
+    "test": "mocha test/**/*.test.js && npm run lint"
   },
   "author": "Bjarne Oeverli",
   "license": "MIT",
