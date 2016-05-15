@@ -27,12 +27,12 @@ function createHeaders(params) {
         headers['Content-Type'] = 'application/json';
     }
 
-    return headers
+    return headers;
 }
 
 const getProtocol = url => url.protocol === 'https:' ? require('https') : require('http');
 
-function request(url, params) {
+function request(endpoint, params) {
     if (!params) {
         params = {};
     }
@@ -45,14 +45,12 @@ function request(url, params) {
 
     const headers = createHeaders(params);
 
-    if (!url && !params.url) {
+    if (!endpoint && !params.url) {
         throw new TypeError('You need to provide an url.');
     }
 
-    const endpoint = url || params.url;
-
     return new Promise((resolve, reject) => {
-        const url = require('url').parse(endpoint);
+        const url = require('url').parse(endpoint || params.url);
         const fn = getProtocol(url);
 
         const opts = {
@@ -69,7 +67,7 @@ function request(url, params) {
         };
 
         if (headers) {
-            opts.headers = headers
+            opts.headers = headers;
         }
 
         const req = fn.request(opts, res => {
@@ -84,17 +82,17 @@ function request(url, params) {
             res.on('data', chunk => body.push(chunk));
 
             res.on('end', () => {
-                let data = body.join('');
+                let response = body.join('');
 
                 if (params.json) {
                     try {
-                        data = JSON.parse(data);
+                        response = JSON.parse(response);
                     } catch (e) {
                         reject(e);
                     }
                 }
 
-                resolve(data);
+                resolve(response);
             });
         });
 
@@ -106,6 +104,6 @@ function request(url, params) {
 
         req.end();
     });
-};
+}
 
 module.exports = request;

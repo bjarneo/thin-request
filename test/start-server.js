@@ -8,7 +8,7 @@ app.use(bodyParser.json());
 module.exports = function startServer(done) {
     app.get('/get/:id', (req, res) => {
         res.format({
-            html: () =>  res.send(`<p>${req.params.id}</p>`),
+            html: () => res.send(`<p>${req.params.id}</p>`),
             json: () => res.send({
                 it: 'works',
                 id: req.params.id
