@@ -11,9 +11,7 @@ function createHeaders(params) {
 
     if (!params.headers) {
         headers['Content-Type'] = 'application/x-www-form-urlencoded';
-    }
-
-    if (params.headers) {
+    } else {
         headers = extend(headers, params.headers);
     }
 
