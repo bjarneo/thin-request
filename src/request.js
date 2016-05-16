@@ -73,7 +73,7 @@ function request(endpoint, params) {
 
             res.setEncoding('utf8');
 
-            if (res.statusCode <= 200 && res.statusCode >= 299) {
+            if (res.statusCode < 200 && res.statusCode > 299) {
                 reject(res.statusCode);
             }
 
